@@ -8,3 +8,7 @@
 ## initScan
 
 - cissue: #11 if user comes back to initScan, and there is a draft order, delete the draft order and create a new one @abbasali-io
+
+## orderRequests
+
+- cissue: #12 due to changing table, try and remove the table id from 'or' page parameter @abbasali-io
