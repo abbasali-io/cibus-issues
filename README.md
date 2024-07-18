@@ -2,13 +2,28 @@
 
 ## Home Page
 
-- cissue: #9 show live orders at the homepage
-- cissue: #10 show recent 10 orders at the homepage @abbasali-io
-- cissue: #14 add user page link to the homepage @abbasali-io
+- ~~cissue: #9 show live orders at the homepage~~
+- ~~cissue: #10 show recent 10 orders at the homepage @abbasali-io~~
+- ~~cissue: #14 add user page link to the homepage @abbasali-io~~
+- cissue: #30 Show banner to download app if it is web based platform @abbasali-io
+- cissue: #31 create the historical order Details screen @abbasali-io
+- cissue: #32 able to search historical order by restaurant name, or food name @abbasali-io
+
+## Historical Order Details
+
+- cissue: #33 show the order totals, including taxes, etc. @abbasali-io
+- cissue: #34 allow emailing receipt @abbasali-io
+- cissue: #35 show item details list underneath @abbasali-io
+- cissue: #36 show the feedback provided for each item @abbasali-io
 
 ## initScan
 
-- cissue: #11 if user comes back to initScan, and there is a draft order, delete the draft order and create a new one @abbasali-io
+- ~~cissue: #11 if user comes back to initScan, and there is a draft order, delete the draft order and create a new one @abbasali-io~~
+
+## payment Confirmation Page
+
+- cissue: #37 allow users to add like or unlike for each item @abbasali-io
+- cissue: #38 setup a button 'why' if the user has unliked for feedback @abbasali-io
 
 ## orderRequests
 
