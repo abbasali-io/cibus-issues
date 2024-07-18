@@ -8,6 +8,7 @@
 - cissue: #30 Show banner to download app if it is web based platform @abbasali-io
 - cissue: #31 create the historical order Details screen @abbasali-io
 - cissue: #32 able to search historical order by restaurant name, or food name @abbasali-io
+- bug: #40 QR Scan is not working in home page
 
 ## Historical Order Details
 
