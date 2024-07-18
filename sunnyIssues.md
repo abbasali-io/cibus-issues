@@ -2,4 +2,4 @@
 
 ## Home
 
-- cissue: #41 check order page @sunnydutt12
+- ~~cissue: #41 check order page @sunnydutt12~~
