@@ -16,6 +16,10 @@
 - cissue: #35 show item details list underneath @abbasali-io
 - cissue: #36 show the feedback provided for each item @abbasali-io
 
+## Order Payments
+
+- cissue: #39 Test failed payment and see if the bottom snackbar still show? the one that was not showign properly @sunnydutt12
+
 ## initScan
 
 - ~~cissue: #11 if user comes back to initScan, and there is a draft order, delete the draft order and create a new one @abbasali-io~~
