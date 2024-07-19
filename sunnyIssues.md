@@ -17,3 +17,7 @@
 ## Menumangement
 
 - cissue: #58 change design for menu card. @sunnydutt12
+
+## orderPayment
+
+- cissue: #59 isFullyPaid in orderRequest need to be true after full payment of split bill. @abbasali-io
