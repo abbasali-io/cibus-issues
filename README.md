@@ -1,16 +1,22 @@
 # cibus-issues
 
+## General
+
+- cissue: #50 add chua, sadia, saima to test group for ios @abbasali-io
+- ~~cissue: #52 if user selects a theme, persist the theme in the device @abbasali-io~~
+
 ## shop PreAuth
 
-- cissue: #44 on initAuth, auto navigate, the issue is that there is a long time taken for authenticate
+- ~~cissue: #44 on initAuth, auto navigate, the issue is that there is a long time taken for authenticate~~
 
 ## Home Page
 
-- cissue: #30 Show banner to download app if it is web based platform @abbasali-io
+- cissue: #49 add links to the app download banner @abbasali-io
 - cissue: #31 create the historical order Details screen @abbasali-io
 - cissue: #32 able to search historical order by restaurant name, or food name @abbasali-io
 - bug: #40 QR Scan is not working in home page
-- bug: #47 home page screen the past orders should not scroll @abbasali-io
+- ~~bug: #47 home page screen the past orders should not scroll @abbasali-io~~
+- ~~cissue: #30 Show banner to download app if it is web based platform @abbasali-io~~
 - ~~cissue: #9 show live orders at the homepage~~
 - ~~cissue: #10 show recent 10 orders at the homepage @abbasali-io~~
 - ~~cissue: #14 add user page link to the homepage @abbasali-io~~
@@ -21,16 +27,6 @@
 - cissue: #34 allow emailing receipt @abbasali-io
 - cissue: #35 show item details list underneath @abbasali-io
 - cissue: #36 show the feedback provided for each item @abbasali-io
-
-## Order Payments
-
-- cissue: #39 Test failed payment and see if the bottom snackbar still show? the one that was not showign properly @sunnydutt12
-- cissue: #45 while doing split order, hide full payment and split button @abbasali-io
-- cissue: #46 for non paying split person, the order needs to be updated as paid as well even if he is not paying once order request is marked as paid @abbasali-io
-
-## initScan
-
-- ~~cissue: #11 if user comes back to initScan, and there is a draft order, delete the draft order and create a new one @abbasali-io~~
 
 ## payment Confirmation Page
 
@@ -43,8 +39,9 @@
 
 ## SSM Page
 
-- cissue: #13 at the top, move settings menu to User's page via homepage @abbasali-io
 - cissue: #43 mark soldout in the app @abbasali-io
+- ~~cissue: #13 at the top, move settings menu to User's page via homepage @abbasali-io~~
+- ~~cissue: #48 Make the Submit Order button in Stack instead of it being scrolled down out of the page @abbasali-io~~
 
 ## User Page
 
@@ -69,3 +66,15 @@
 ## Saani
 
 - cissue: #42 menu timings should not be in the menu, it risk overlapping the menu, how do we make sure that there are no overlaps? @sunnydutt12
+
+## Order Payments
+
+- ~~cissue: #46 for non paying split person, the order needs to be updated as paid as well even if he is not paying once order request is marked as paid @abbasali-io~~
+- ~~cissue: #53 if total order request is paid, mark orderRequest's isOpen to false @abbasali-io~~
+- ~~cissue: #39 Test failed payment and see if the bottom snackbar still show? the one that was not showign properly @sunnydutt12~~
+- ~~cissue: #45 while doing split order, hide full payment and split button @abbasali-io~~
+- ~~cissue: #51 if there is only one person ordering, group order tab should not be visible @abbasali-io~~
+
+## initScan
+
+- ~~cissue: #11 if user comes back to initScan, and there is a draft order, delete the draft order and create a new one @abbasali-io~~
