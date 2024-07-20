@@ -3,6 +3,7 @@
 ## General
 
 - cissue: #50 add chua, sadia, saima to test group for ios @abbasali-io
+- cissue: #60 setup deep linking for the app @abbasali-io
 - ~~cissue: #52 if user selects a theme, persist the theme in the device @abbasali-io~~
 
 ## shop PreAuth
@@ -12,9 +13,9 @@
 ## Home Page
 
 - cissue: #49 add links to the app download banner @abbasali-io
-- cissue: #31 create the historical order Details screen @abbasali-io
 - cissue: #32 able to search historical order by restaurant name, or food name @abbasali-io
 - bug: #40 QR Scan is not working in home page
+- ~~cissue: #31 create the historical order Details screen @abbasali-io~~
 - ~~bug: #47 home page screen the past orders should not scroll @abbasali-io~~
 - ~~cissue: #30 Show banner to download app if it is web based platform @abbasali-io~~
 - ~~cissue: #9 show live orders at the homepage~~
@@ -23,10 +24,10 @@
 
 ## Historical Order Details
 
-- cissue: #33 show the order totals, including taxes, etc. @abbasali-io
-- cissue: #34 allow emailing receipt @abbasali-io
-- cissue: #35 show item details list underneath @abbasali-io
 - cissue: #36 show the feedback provided for each item @abbasali-io
+- cissue: #34 allow emailing receipt @abbasali-io
+- ~~cissue: #33 show the order totals, including taxes, etc. @abbasali-io~~
+- ~~cissue: #35 show item details list underneath @abbasali-io~~
 
 ## payment Confirmation Page
 
