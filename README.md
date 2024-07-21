@@ -6,10 +6,6 @@
 - cissue: #60 setup deep linking for the app @abbasali-io
 - ~~cissue: #52 if user selects a theme, persist the theme in the device @abbasali-io~~
 
-## shop PreAuth
-
-- ~~cissue: #44 on initAuth, auto navigate, the issue is that there is a long time taken for authenticate~~
-
 ## Home Page
 
 - cissue: #49 add links to the app download banner @abbasali-io
@@ -24,25 +20,14 @@
 
 ## Historical Order Details
 
-- cissue: #36 show the feedback provided for each item @abbasali-io
 - cissue: #34 allow emailing receipt @abbasali-io
+- ~~cissue: #36 show the feedback provided for each item @abbasali-io~~
 - ~~cissue: #33 show the order totals, including taxes, etc. @abbasali-io~~
 - ~~cissue: #35 show item details list underneath @abbasali-io~~
-
-## payment Confirmation Page
-
-- ~~cissue: #37 allow users to add like or unlike for each item @abbasali-io~~
-- ~~cissue: #38 setup a button 'why' if the user has unliked for feedback @abbasali-io~~
 
 ## orderRequests
 
 - cissue: #12 due to changing table, try and remove the table id from 'or' page parameter @abbasali-io
-
-## SSM Page
-
-- cissue: #43 mark soldout in the app @abbasali-io
-- ~~cissue: #13 at the top, move settings menu to User's page via homepage @abbasali-io~~
-- ~~cissue: #48 Make the Submit Order button in Stack instead of it being scrolled down out of the page @abbasali-io~~
 
 ## User Page
 
@@ -79,3 +64,18 @@
 ## initScan
 
 - ~~cissue: #11 if user comes back to initScan, and there is a draft order, delete the draft order and create a new one @abbasali-io~~
+
+## payment Confirmation Page
+
+- ~~cissue: #37 allow users to add like or unlike for each item @abbasali-io~~
+- ~~cissue: #38 setup a button 'why' if the user has unliked for feedback @abbasali-io~~
+
+## shop PreAuth
+
+- ~~cissue: #44 on initAuth, auto navigate, the issue is that there is a long time taken for authenticate~~
+
+## SSM Page
+
+- ~~cissue: #43 mark soldout in the app @abbasali-io~~
+- ~~cissue: #13 at the top, move settings menu to User's page via homepage @abbasali-io~~
+- ~~cissue: #48 Make the Submit Order button in Stack instead of it being scrolled down out of the page @abbasali-io~~
