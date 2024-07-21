@@ -31,8 +31,8 @@
 
 ## payment Confirmation Page
 
-- cissue: #37 allow users to add like or unlike for each item @abbasali-io
-- cissue: #38 setup a button 'why' if the user has unliked for feedback @abbasali-io
+- ~~cissue: #37 allow users to add like or unlike for each item @abbasali-io~~
+- ~~cissue: #38 setup a button 'why' if the user has unliked for feedback @abbasali-io~~
 
 ## orderRequests
 
