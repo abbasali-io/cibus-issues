@@ -35,3 +35,7 @@
 - cissue: #66 investigate the issue where an order is automatically created when we navigate from order summary to home and back forth. @abbasali-io
 
 -cissue: #67 investigate negative outstandinBalance of an orderRequest after the payment type is payForYourself. @abbasali-io
+
+## orderTaker
+
+- cissue: #68 follow the method used in POS for creating new order. (OrderRequest). @sunnydutt12
