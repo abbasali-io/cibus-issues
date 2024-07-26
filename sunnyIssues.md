@@ -44,3 +44,7 @@
 ## Payments
 
 - cissue: #69 need to add list of orderIds in payment. @abbasali-io
+
+## Feedbacks
+
+- cissue: #71 Please add tableNo, OrderNo, OrderItemName in feedback Doc @abbasali-io
