@@ -13,6 +13,7 @@
 
 - cissue: #55 impliment search in super admin active orders page @sunnydutt12
 - cissue: #57 add order search functionality by customer name, order number, payment amount, last 4 digit of credit card. in super admin active orders page @sunnydutt12
+- cissue: #70 impliment search and filters for admin to manage orders, payment, feedbacks. @abbasali-io
 
 ## Menumangement
 
