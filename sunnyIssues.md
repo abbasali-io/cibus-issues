@@ -39,3 +39,7 @@
 ## orderTaker
 
 - cissue: #68 follow the method used in POS for creating new order. (OrderRequest). @sunnydutt12
+
+## Payments
+
+- cissue: #69 need to add list of orderIds in payment. @abbasali-io
