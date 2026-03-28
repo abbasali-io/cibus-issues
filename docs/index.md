@@ -6,7 +6,7 @@ description: "Testing manuals and user guides for the Cibus Restaurant Platform"
 permalink: /
 ---
 
-# Cibus Documentation
+# Cibus Docs
 
 Welcome to the documentation hub for the **Cibus Restaurant Operating & Management System**.
 
@@ -17,6 +17,7 @@ Welcome to the documentation hub for the **Cibus Restaurant Operating & Manageme
 Comprehensive QA test plans for all Cibus applications — Admin, Customer, POS, KDS, and cross-app workflows.
 
 Browse the **Testing Manuals** section in the sidebar to access:
+
 - **Admin Tests** — 124 scenarios covering all management features
 - **Customer Tests** — 114 scenarios for ordering, payment, and tracking
 - **POS Tests** — 77 scenarios for counter operations and shifts
@@ -33,6 +34,7 @@ Browse the **Testing Manuals** section in the sidebar to access:
 End-user documentation for restaurant teams using the Cibus platform.
 
 Browse the **User Manuals** section in the sidebar to access:
+
 - **Admin Manual** — Restaurant management and configuration
 - **POS Manual** — Point of sale operations
 - **KDS Manual** — Kitchen display system
