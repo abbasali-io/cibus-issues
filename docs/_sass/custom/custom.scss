@@ -6,15 +6,17 @@
 
 // ----- Three-Column Layout: Right TOC -----
 @media (min-width: 66.5rem) {
+  // Expand the main content wrap to accommodate the TOC column
   .main-content-wrap {
     display: flex;
     position: relative;
+    max-width: none;
   }
 
   .main-content {
     flex: 1;
     min-width: 0;
-    max-width: 50rem;
+    max-width: 52rem;
   }
 
   .page-toc {

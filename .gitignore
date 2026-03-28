@@ -1,0 +1,15 @@
+# Jekyll build output
+docs/_site/
+docs/.jekyll-cache/
+docs/.jekyll-metadata
+docs/.sass-cache/
+
+# Bundler
+docs/Gemfile.lock
+docs/vendor/
+
+# Local dev config
+docs/_config_local.yml
+
+# macOS
+.DS_Store
