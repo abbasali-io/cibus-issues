@@ -2,6 +2,7 @@
 layout: default
 title: POS Manual
 nav_order: 2
+parent: User Manuals
 ---
 
 # Cibus POS Manual

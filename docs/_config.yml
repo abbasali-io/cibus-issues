@@ -1,17 +1,24 @@
-title: Cibus Documentation
-description: Testing manuals and user guides for the Cibus Restaurant Operating & Management System
-remote_theme: pages-themes/cayman@v0.2.0
+remote_theme: just-the-docs/just-the-docs
 plugins:
   - jekyll-remote-theme
 
-defaults:
-  - scope:
-      path: "testing"
-    values:
-      layout: default
-      nav_section: "Testing"
-  - scope:
-      path: "user-manuals"
-    values:
-      layout: default
-      nav_section: "User Manuals"
+title: Cibus Documentation
+description: Testing manuals and user guides for the Cibus Restaurant Platform
+
+baseurl: "/cibus-issues"
+url: "https://abbasali-io.github.io"
+
+color_scheme: blackwhite
+
+search_enabled: true
+
+footer_content: "&copy; 2026 Cibus"
+
+aux_links:
+  "GitHub":
+    - "https://github.com/abbasali-io/cibus-issues"
+
+back_to_top: true
+back_to_top_text: "Back to top"
+
+heading_anchors: true

@@ -2,6 +2,7 @@
 layout: default
 title: POS App Tests
 parent: Testing Manuals
+nav_order: 3
 ---
 
 # POS App — Manual Test Plan

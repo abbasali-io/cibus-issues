@@ -2,6 +2,7 @@
 layout: default
 title: User Manuals
 nav_order: 2
+has_children: true
 ---
 
 # Cibus User Manuals

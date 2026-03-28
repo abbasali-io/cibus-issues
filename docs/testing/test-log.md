@@ -2,6 +2,7 @@
 layout: default
 title: Test Execution Log
 parent: Testing Manuals
+nav_order: 6
 ---
 
 # Cibus Platform — Manual Test Execution Log

@@ -2,6 +2,7 @@
 layout: default
 title: KDS App Tests
 parent: Testing Manuals
+nav_order: 4
 ---
 
 # KDS App — Manual Test Plan

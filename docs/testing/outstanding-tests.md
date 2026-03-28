@@ -2,6 +2,7 @@
 layout: default
 title: Outstanding Tests
 parent: Testing Manuals
+nav_order: 8
 ---
 
 # Cross-App Tests — Living Status Tracker

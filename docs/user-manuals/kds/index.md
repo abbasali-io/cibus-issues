@@ -2,6 +2,7 @@
 layout: default
 title: KDS Manual
 nav_order: 3
+parent: User Manuals
 ---
 
 # Cibus KDS Manual

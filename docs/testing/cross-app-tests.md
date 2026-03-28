@@ -2,6 +2,7 @@
 layout: default
 title: Cross-App Tests
 parent: Testing Manuals
+nav_order: 5
 ---
 
 # Cross-App Tests — Manual Test Plan

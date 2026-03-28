@@ -1,6 +1,8 @@
 ---
 layout: default
 title: Testing Manuals
+nav_order: 1
+has_children: true
 ---
 
 # Cibus Manual Testing Guide

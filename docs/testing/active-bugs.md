@@ -2,6 +2,7 @@
 layout: default
 title: Active Bugs
 parent: Testing Manuals
+nav_order: 7
 ---
 
 # Active Bug Report — Cibus Platform

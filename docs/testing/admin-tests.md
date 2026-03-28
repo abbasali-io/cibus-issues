@@ -2,6 +2,7 @@
 layout: default
 title: Admin App Tests
 parent: Testing Manuals
+nav_order: 1
 ---
 
 # Admin App — Manual Test Plan

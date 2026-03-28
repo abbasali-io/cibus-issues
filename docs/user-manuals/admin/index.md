@@ -2,6 +2,7 @@
 layout: default
 title: Admin Manual
 nav_order: 1
+parent: User Manuals
 ---
 
 # Cibus Admin Manual

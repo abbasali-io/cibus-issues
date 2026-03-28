@@ -2,6 +2,7 @@
 layout: default
 title: Customer App Tests
 parent: Testing Manuals
+nav_order: 2
 ---
 
 # Customer App — Manual Test Plan
