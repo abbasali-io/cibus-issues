@@ -4,32 +4,87 @@
 // Typography-driven aesthetics: weight, size,
 // spacing, and borders create visual hierarchy.
 
+// ----- Full-Width Layout -----
+// Override Just the Docs fixed-width constraints so the content
+// fills the viewport between the sidebar and the right TOC.
+
+@media (min-width: 50rem) {
+  .main {
+    max-width: none;
+  }
+}
+
+// Fix sidebar to a constant width instead of the theme's
+// growing calc() so the content gets all remaining space.
+@media (min-width: 66.5rem) {
+  .side-bar {
+    width: 16.5rem;
+  }
+
+  .side-bar + .main {
+    margin-left: 16.5rem;
+  }
+}
+
+// Reduce left padding so content sits closer to the sidebar.
+@media (min-width: 50rem) {
+  .main-content-wrap {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 // ----- Three-Column Layout: Right TOC -----
 @media (min-width: 66.5rem) {
-  // Expand the main content wrap to accommodate the TOC column
   .main-content-wrap {
-    display: flex;
-    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 16rem;
+    grid-template-rows: auto 1fr;
     max-width: none;
   }
 
+  // Breadcrumb spans full width above the content + TOC row
+  .breadcrumb-nav {
+    grid-column: 1 / -1;
+  }
+
   .main-content {
-    flex: 1;
+    grid-column: 1;
     min-width: 0;
-    max-width: 52rem;
   }
 
   .page-toc {
-    width: 14rem;
-    flex-shrink: 0;
+    grid-column: 2;
+    grid-row: 2;
     position: sticky;
     top: 2rem;
-    align-self: flex-start;
+    align-self: start;
     max-height: calc(100vh - 4rem);
     overflow-y: auto;
     padding-left: 1.5rem;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
     border-left: 1px solid #e0e0e0;
+
+    // Hide the scrollbar but keep scrolling
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+
+    &:hover {
+      scrollbar-color: #ccc transparent;
+    }
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: transparent;
+      border-radius: 2px;
+    }
+
+    &:hover::-webkit-scrollbar-thumb {
+      background: #ccc;
+    }
   }
 }
 
@@ -155,6 +210,8 @@
 
 // ----- Tables -----
 .main-content table {
+  display: block;
+  overflow-x: auto;
   border-color: #d0d0d0;
 
   th {
