@@ -4,6 +4,83 @@
 // Typography-driven aesthetics: weight, size,
 // spacing, and borders create visual hierarchy.
 
+// ----- Three-Column Layout: Right TOC -----
+@media (min-width: 66.5rem) {
+  .main-content-wrap {
+    display: flex;
+    position: relative;
+  }
+
+  .main-content {
+    flex: 1;
+    min-width: 0;
+    max-width: 50rem;
+  }
+
+  .page-toc {
+    width: 14rem;
+    flex-shrink: 0;
+    position: sticky;
+    top: 2rem;
+    align-self: flex-start;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    padding-left: 1.5rem;
+    margin-left: 1rem;
+    border-left: 1px solid #e0e0e0;
+  }
+}
+
+@media (max-width: 66.49rem) {
+  .page-toc {
+    display: none;
+  }
+}
+
+.page-toc-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+  margin: 0 0 0.75rem 0;
+  padding: 0;
+}
+
+.page-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.page-toc-item {
+  margin: 0;
+  padding: 0;
+}
+
+.page-toc-item-h3 {
+  padding-left: 0.75rem;
+}
+
+.page-toc-link {
+  display: block;
+  padding: 0.2rem 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: #000;
+  }
+
+  &.active {
+    color: #000;
+    font-weight: 600;
+  }
+}
+
 // ----- Links -----
 .main-content a:not(.site-title):not(.nav-list-link) {
   text-decoration: underline;
@@ -135,18 +212,6 @@
   border-bottom: 2px solid #000;
 }
 
-// ----- Right TOC (On This Page) -----
-.toc-list .toc-list-item a {
-  color: #666;
-  text-decoration: none;
-
-  &:hover,
-  &.active {
-    color: #000;
-    font-weight: 600;
-  }
-}
-
 // ----- Back to Top -----
 .btn-primary,
 .btn-outline,
@@ -174,7 +239,6 @@
 }
 
 // ----- Emoji / Priority markers in test plans -----
-// Make checkboxes and status markers stand out
 .main-content li {
   line-height: 1.7;
 }

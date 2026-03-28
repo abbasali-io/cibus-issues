@@ -1,0 +1,54 @@
+<script>
+(function() {
+  var tocList = document.getElementById('page-toc-list');
+  if (!tocList) return;
+
+  var mainContent = document.getElementById('main-content');
+  if (!mainContent) return;
+
+  var headings = mainContent.querySelectorAll('h2, h3');
+  if (headings.length === 0) {
+    var tocNav = document.querySelector('.page-toc');
+    if (tocNav) tocNav.style.display = 'none';
+    return;
+  }
+
+  headings.forEach(function(heading) {
+    var li = document.createElement('li');
+    li.className = 'page-toc-item';
+    if (heading.tagName === 'H3') {
+      li.className += ' page-toc-item-h3';
+    }
+    var a = document.createElement('a');
+    a.href = '#' + heading.id;
+    a.textContent = heading.textContent.replace(/^\s*#\s*/, '').trim();
+    a.className = 'page-toc-link';
+    li.appendChild(a);
+    tocList.appendChild(li);
+  });
+
+  // Scroll-spy: highlight the current section
+  var tocLinks = tocList.querySelectorAll('.page-toc-link');
+  var headingEls = Array.from(headings);
+
+  function onScroll() {
+    var scrollPos = window.scrollY + 80;
+    var current = null;
+    for (var i = 0; i < headingEls.length; i++) {
+      if (headingEls[i].offsetTop <= scrollPos) {
+        current = i;
+      }
+    }
+    tocLinks.forEach(function(link, idx) {
+      if (idx === current) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
