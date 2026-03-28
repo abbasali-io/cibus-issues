@@ -1,0 +1,17 @@
+title: Cibus Documentation
+description: Testing manuals and user guides for the Cibus Restaurant Operating & Management System
+remote_theme: pages-themes/cayman@v0.2.0
+plugins:
+  - jekyll-remote-theme
+
+defaults:
+  - scope:
+      path: "testing"
+    values:
+      layout: default
+      nav_section: "Testing"
+  - scope:
+      path: "user-manuals"
+    values:
+      layout: default
+      nav_section: "User Manuals"
