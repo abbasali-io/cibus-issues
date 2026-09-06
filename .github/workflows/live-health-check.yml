@@ -77,7 +77,7 @@ jobs:
         run: |
           export WHEN=$(date -u +%Y-%m-%dT%H:%M:%SZ)
           # The list API is consistent; the search API is not (index lag), so never use --search here.
-          n=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --limit 100 --json number,title --jq --arg t "$STICKY_TITLE" '[.[]|select(.title==$t)][0].number // empty')
+          n=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --limit 100 --json number,title | jq -r --arg t "$STICKY_TITLE" '[.[]|select(.title==$t)][0].number // empty')
           if [ -z "$n" ]; then
             python3 - <<'PY'
           import os
@@ -99,7 +99,7 @@ jobs:
           DETAIL: ${{ steps.probe.outputs.detail }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          n=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --limit 100 --json number,title --jq --arg t "$STICKY_TITLE" '[.[]|select(.title==$t)][0].number // empty')
+          n=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --limit 100 --json number,title | jq -r --arg t "$STICKY_TITLE" '[.[]|select(.title==$t)][0].number // empty')
           if [ -n "$n" ]; then
             gh issue close "$n" --repo "$GITHUB_REPOSITORY" --comment "Recovered at $(date -u +%Y-%m-%dT%H:%M:%SZ) — \`${DETAIL}\` (run ${RUN_URL})"
             echo "closed sticky issue #$n"
