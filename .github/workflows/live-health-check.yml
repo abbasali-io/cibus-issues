@@ -70,24 +70,38 @@ jobs:
 
       - name: DOWN — open or update the sticky issue, then fail the run
         if: steps.probe.outputs.ok == '0'
+        env:
+          URL: ${{ steps.probe.outputs.url }}
+          DETAIL: ${{ steps.probe.outputs.detail }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          when=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-          n=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$STICKY_TITLE\" in:title" --json number --jq '.[0].number // empty')
+          export WHEN=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          # The list API is consistent; the search API is not (index lag), so never use --search here.
+          n=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --limit 100 --json number,title --jq --arg t "$STICKY_TITLE" '[.[]|select(.title==$t)][0].number // empty')
           if [ -z "$n" ]; then
-            sed -e "s|{{WHEN}}|${when}|g" -e "s|{{URL}}|${{ steps.probe.outputs.url }}|g" -e "s|{{DETAIL}}|${{ steps.probe.outputs.detail }}|g" -e "s|{{RUN_URL}}|${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|g" .github/live-health-down-body.md > /tmp/body.md
+            python3 - <<'PY'
+          import os
+          t = open('.github/live-health-down-body.md').read()
+          for k in ('WHEN', 'URL', 'DETAIL', 'RUN_URL'):
+              t = t.replace('{{' + k + '}}', os.environ[k])
+          open('/tmp/body.md', 'w').write(t)
+          PY
             gh issue create --repo "$GITHUB_REPOSITORY" --title "$STICKY_TITLE" --label "owner:abbas" --body-file /tmp/body.md
           else
-            gh issue comment "$n" --repo "$GITHUB_REPOSITORY" --body "Still DOWN at ${when} — \`${{ steps.probe.outputs.detail }}\` (run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+            gh issue comment "$n" --repo "$GITHUB_REPOSITORY" --body "Still DOWN at ${WHEN} — \`${DETAIL}\` (run ${RUN_URL})"
           fi
-          echo "::error::Live /health is DOWN — ${{ steps.probe.outputs.detail }}"
+          echo "::error::Live /health is DOWN — ${DETAIL}"
           exit 1
 
       - name: UP — close the sticky issue if one is open
         if: steps.probe.outputs.ok == '1'
+        env:
+          DETAIL: ${{ steps.probe.outputs.detail }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
-          n=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$STICKY_TITLE\" in:title" --json number --jq '.[0].number // empty')
+          n=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --limit 100 --json number,title --jq --arg t "$STICKY_TITLE" '[.[]|select(.title==$t)][0].number // empty')
           if [ -n "$n" ]; then
-            gh issue close "$n" --repo "$GITHUB_REPOSITORY" --comment "Recovered at $(date -u +%Y-%m-%dT%H:%M:%SZ) — \`${{ steps.probe.outputs.detail }}\` (run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+            gh issue close "$n" --repo "$GITHUB_REPOSITORY" --comment "Recovered at $(date -u +%Y-%m-%dT%H:%M:%SZ) — \`${DETAIL}\` (run ${RUN_URL})"
             echo "closed sticky issue #$n"
           else
             echo "healthy, nothing open"
