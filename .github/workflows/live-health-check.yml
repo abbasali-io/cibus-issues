@@ -1,0 +1,105 @@
+# External safety net for Live (GL-15, cibus-issues 286, owner decision 2026-09-06).
+#
+# The self-hosted uptime probe lives INSIDE Supabase (pg_cron on each tier), so it can
+# never report that Supabase itself is down. This workflow is the one check that lives
+# outside: every 10 minutes it GETs Live's /health edge function from GitHub's runners.
+# It runs in this PUBLIC repo because Actions minutes are free here.
+#
+# DOWN = three attempts 20 s apart all fail (non-200, or ok!=true, or tier!=live).
+# On DOWN it opens ONE sticky issue "Live /health is DOWN (external check)" — or comments
+# on it if already open — and fails the run, so GitHub also emails the workflow-failure
+# notification. On the next healthy run it closes the sticky issue with a recovery note.
+#
+# Manual RED proof: Actions → this workflow → Run workflow → url = any URL that is not
+# Live's /health (e.g. https://httpstat.us/503). The following scheduled run recovers it.
+name: Live health check (external)
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Override the probed URL (only for a deliberate RED proof)"
+        required: false
+        default: ""
+
+permissions:
+  issues: write
+  contents: read
+
+concurrency:
+  group: live-health-check
+  cancel-in-progress: false
+
+env:
+  LIVE_HEALTH_URL: https://iejmitonpgmchfpzvqtm.supabase.co/functions/v1/health
+  STICKY_TITLE: "Live /health is DOWN (external check)"
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Probe Live /health (3 attempts, 20 s apart)
+        id: probe
+        run: |
+          url="${{ github.event.inputs.url }}"
+          [ -n "$url" ] || url="$LIVE_HEALTH_URL"
+          echo "probing $url"
+          ok=0; code=000; json=""
+          for attempt in 1 2 3; do
+            raw=$(curl -sS -m 15 -w '\n%{http_code}' "$url" 2>&1) || true
+            code=${raw##*$'\n'}; json=${raw%$'\n'*}
+            if [ "$code" = "200" ] && printf '%s' "$json" | grep -q '"ok":true' && printf '%s' "$json" | grep -q '"tier":"live"'; then
+              ok=1; echo "attempt $attempt: UP — $json"; break
+            fi
+            echo "attempt $attempt: DOWN — HTTP $code ${json:0:300}"
+            [ "$attempt" -lt 3 ] && sleep 20
+          done
+          detail="HTTP $code ${json:0:300}"
+          detail=${detail//$'\n'/ }
+          echo "ok=$ok" >> "$GITHUB_OUTPUT"
+          echo "detail=$detail" >> "$GITHUB_OUTPUT"
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+
+      - name: DOWN — open or update the sticky issue, then fail the run
+        if: steps.probe.outputs.ok == '0'
+        run: |
+          when=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          n=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$STICKY_TITLE\" in:title" --json number --jq '.[0].number // empty')
+          if [ -z "$n" ]; then
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$STICKY_TITLE" --label "owner:abbas" --body "$(cat <<BODY
+**Live \`/health\` failed three consecutive probes from GitHub at ${when}.**
+
+Probed: \`${{ steps.probe.outputs.url }}\`
+Last response: \`${{ steps.probe.outputs.detail }}\`
+
+This is the external safety net (GL-15). It lives outside Supabase on purpose: if the Live Supabase project, its edge runtime or its database is down, the internal uptime probe cannot say so — this can.
+
+**What to check, in order**
+1. https://status.supabase.com — is it a platform incident?
+2. Live project dashboard (\`iejmitonpgmchfpzvqtm\`): project paused? database unreachable? edge functions failing to boot?
+3. Open \`https://pos.cibus.app\` and \`https://hi.cibus.app\` — are the apps themselves up (static hosting is separate from Supabase)?
+4. Runbook: \`docs/ops/observability.md\` in Cibus-6-0.
+
+This issue is sticky: later failed runs comment here instead of opening a new one, and the first healthy run closes it with a recovery note. Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+BODY
+)"
+          else
+            gh issue comment "$n" --repo "$GITHUB_REPOSITORY" --body "Still DOWN at ${when} — \`${{ steps.probe.outputs.detail }}\` (run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+          fi
+          echo "::error::Live /health is DOWN — ${{ steps.probe.outputs.detail }}"
+          exit 1
+
+      - name: UP — close the sticky issue if one is open
+        if: steps.probe.outputs.ok == '1'
+        run: |
+          n=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$STICKY_TITLE\" in:title" --json number --jq '.[0].number // empty')
+          if [ -n "$n" ]; then
+            gh issue close "$n" --repo "$GITHUB_REPOSITORY" --comment "Recovered at $(date -u +%Y-%m-%dT%H:%M:%SZ) — \`${{ steps.probe.outputs.detail }}\` (run ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})"
+            echo "closed sticky issue #$n"
+          else
+            echo "healthy, nothing open"
+          fi
