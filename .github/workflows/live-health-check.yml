@@ -6,7 +6,9 @@
 # It runs in this PUBLIC repo because Actions minutes are free here.
 #
 # DOWN = three attempts 20 s apart all fail (non-200, or ok!=true, or tier!=live).
-# On DOWN it opens ONE sticky issue "Live /health is DOWN (external check)" — or comments
+# On DOWN it opens ONE sticky issue "Live /health is DOWN (external check)" — labelled
+# owner:abbas + alert (the alert label keeps it off Cibus-6-0's regression scoreboard,
+# docs/testing/README.md §3 there: it closes itself, so there is never a fix to pin) — or comments
 # on it if already open — and fails the run, so GitHub also emails the workflow-failure
 # notification. On the next healthy run it closes the sticky issue with a recovery note.
 #
@@ -86,7 +88,7 @@ jobs:
               t = t.replace('{{' + k + '}}', os.environ[k])
           open('/tmp/body.md', 'w').write(t)
           PY
-            gh issue create --repo "$GITHUB_REPOSITORY" --title "$STICKY_TITLE" --label "owner:abbas" --body-file /tmp/body.md
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$STICKY_TITLE" --label "owner:abbas,alert" --body-file /tmp/body.md
           else
             gh issue comment "$n" --repo "$GITHUB_REPOSITORY" --body "Still DOWN at ${WHEN} — \`${DETAIL}\` (run ${RUN_URL})"
           fi
